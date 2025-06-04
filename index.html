@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Registro / Login</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      display: flex;
+      height: 100vh;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+    }
+
+    .container {
+      background: #fff;
+      padding: 40px 30px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      width: 100%;
+      max-width: 380px;
+      transition: transform 0.3s ease;
+    }
+
+    .container:hover {
+      transform: translateY(-5px);
+    }
+
+    h2 {
+      color: #333;
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    form {
+      display: none;
+    }
+
+    form.active {
+      display: block;
+    }
+
+    input[type="text"], input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 15px;
+      transition: border 0.3s ease;
+    }
+
+    input:focus {
+      border-color: #2575fc;
+      outline: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #2575fc;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #1a5cd8;
+    }
+
+    .switch-text {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .switch-text a {
+      color: #2575fc;
+      text-decoration: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .switch-text a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- Formulario Registro -->
+    <form id="form-register" class="active" action="registro.php" method="POST">
+      <h2>Registrarse</h2>
+      <input type="text" name="nombre_usuario" placeholder="Nuevo usuario" required />
+      <input type="password" name="contraseña" placeholder="Nueva contraseña" required />
+      <button type="submit">Registrar</button>
+    </form>
+
+    <!-- Formulario Login -->
+    <form id="form-login" action="login.php" method="POST">
+      <h2>Iniciar Sesión</h2>
+      <input type="text" name="nombre_usuario" placeholder="Usuario" required />
+      <input type="password" name="contraseña" placeholder="Contraseña" required />
+      <button type="submit">Ingresar</button>
+    </form>
+
+    <div class="switch-text">
+      <span id="switch-to-login">¿Ya tienes cuenta? <a>Iniciar sesión</a></span>
+      <span id="switch-to-register" style="display:none;">¿No tienes cuenta? <a>Registrarse</a></span>
+    </div>
+
+  </div>
+
+  <script>
+    const formRegister = document.getElementById('form-register');
+    const formLogin = document.getElementById('form-login');
+    const switchToLogin = document.getElementById('switch-to-login');
+    const switchToRegister = document.getElementById('switch-to-register');
+
+    switchToLogin.querySelector('a').addEventListener('click', () => {
+      formRegister.classList.remove('active');
+      formLogin.classList.add('active');
+      switchToLogin.style.display = 'none';
+      switchToRegister.style.display = 'block';
+    });
+
+    switchToRegister.querySelector('a').addEventListener('click', () => {
+      formLogin.classList.remove('active');
+      formRegister.classList.add('active');
+      switchToRegister.style.display = 'none';
+      switchToLogin.style.display = 'block';
+    });
+  </script>
+
+</body>
+</html>
